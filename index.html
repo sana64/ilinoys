@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продажа квартиры ЖК Ильинойс</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.4;
+        }
+        .wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 0 25px 20px 25px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* Шапка с крупным фото f8 как фон */
+        .hero {
+            background-image: url('https://raw.githubusercontent.com/sana64/ilinoys/main/f8.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 0 0 30px 30px;
+            margin: 0 -25px 0 -25px; /* растягиваем на всю ширину wrap */
+            padding: 40px 30px 30px 30px;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            box-shadow: inset 0 0 0 1000px rgba(0, 20, 30, 0.3); /* затемнение для читаемости */
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin: 10 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: white;
+        }
+        .hero h1 span {
+            background: #d32f2f;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 24px;
+            text-shadow: none;
+        }
+        .hero p {
+            font-size: 22px;
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 6px;
+        }
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+            background: #f0f3f8;
+            padding: 18px;
+            border-radius: 14px;
+            margin: 15px 0;
+        }
+        .info-item {
+            font-size: 17px;
+        }
+        .info-item b {
+            margin-right: 6px;
+            color: #0a3b5b;
+        }
+        .metro {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: #e4eef7;
+            padding: 16px;
+            border-radius: 14px;
+        }
+        .metro p {
+            margin: 0;
+        }
+        .desc {
+            background: #faf5e9;
+            padding: 18px;
+            border-radius: 14px;
+            white-space: pre-line;
+            margin: 20px 0;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .gallery img {
+            width: 130px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .house-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 40px;
+            background: #edf2f6;
+            padding: 18px;
+            border-radius: 14px;
+        }
+        .form-block {
+            background: #e8f0fe;
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 25px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px 18px;
+            margin: 8px 0 16px;
+            border: 1px solid #aaa;
+            border-radius: 40px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            border-radius: 20px;
+        }
+        button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #b71c1c;
+        }
+        .footer {
+            margin: 30px 0 10px;
+            color: #555;
+            font-size: 15px;
+        }
+        a {
+            color: #d32f2f;
+        }
+        /* простое модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; }
+            .hero h1 span { font-size: 20px; }
+            .gallery img { width: calc(33% - 8px); height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <!-- Шапка с крупным фото f8 -->
+    <div class="hero">
+        <h1>
+            1‑к квартира, 37,3 м², 15/23 эт.
+            <span>−1,5 млн ₽</span>
+        </h1>
+        <p><strong>ул. Александровская, д. 3</strong> · ЖК «Ильинойс»</p>
+    </div>
+
+    <!-- Коротко о квартире -->
+    <h2>📌 О квартире</h2>
+    <div class="info-grid">
+        <div class="info-item"><b>Комнат:</b> 1</div>
+        <div class="info-item"><b>Площадь:</b> 37,3 м²</div>
+        <div class="info-item"><b>Кухня:</b> 10 м²</div>
+        <div class="info-item"><b>Этаж:</b> 15/23</div>
+        <div class="info-item"><b>Лоджия:</b> есть</div>
+        <div class="info-item"><b>Ключи:</b> весной (дом сдан)</div>
+    </div>
+
+    <!-- Расположение -->
+    <h2>🚇 Расположение</h2>
+    <div class="metro">
+        <p><b>Красногорская</b> 11–15 мин</p>
+        <p><b>Павшино</b> 21–30 мин</p>
+        <p><b>Мякинино</b> от 31 мин</p>
+    </div>
+    <p style="margin-top: 12px;">
+        🚗 25 мин до Москва Сити, 15 мин до ТТК<br>
+        🚶 15 мин до МЦД, 10 мин до Ивановских прудов, 15 до пляжа<br>
+        🚌 маршрутка до Петрово Дальнее (20′), автобусы в Сберсити (скоро московские)
+    </p>
+
+    <!-- Подробное описание (как в тг) -->
+    <h2>📝 Описание</h2>
+    <div class="desc">
+        <b>дом сдан, ключи весной</b>, фотографии от ремонтников для примера. 
+        <span style="background: #ffd966; padding: 2px 8px;">если сами будете делать — цена на 1,5 млн меньше</span><br><br>
+        Рядом библиотека, стадион, центр долголетия с бассейном (лучший в Подмосковье).<br>
+        Пешком 15 мин до МЦД, 10 мин до Ивановских прудов, 15 до пляжа на Москве‑реке.<br>
+        На маршрутке можно в Петрово Дальнее за 20 минут доехать.<br>
+        Автобусы в Сберсити (2 км) уже ездят, скоро их станет больше и появятся московские.
+    </div>
+
+    <!-- Дом -->
+    <h2>🏢 О доме</h2>
+    <div class="house-box">
+        <div><b>ЖК:</b> Ильинойс, Дом 2 (корпус 1,2)</div>
+        <div><b>Сдан:</b> 4 кв. 2025</div>
+        <div><b>Тип:</b> монолитный, 23 этажа</div>
+        <div><b>Лифты:</b> пассажирский + грузовой</div>
+        <div><b>Двор:</b> детская площадка</div>
+        <div><b>Участие:</b> другое</div>
+    </div>
+
+    <!-- Фото галерея (12 штук) -->
+    <h2>📷 Фото (пример)</h2>
+    <div class="gallery" id="gallery"></div>
+
+    <!-- Контакты: форма -->
+    <h2>✉️ Контакты</h2>
+    <div class="form-block">
+        <form id="simpleForm">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="email" placeholder="Ваш email" required>
+            <textarea rows="3" placeholder="Сообщение, вопрос..."></textarea>
+            <button type="submit">Отправить на почту</button>
+            <p style="margin: 12px 0 0;">📧 <b>sana64@bk.ru</b> (письмо придёт туда)</p>
+        </form>
+        <p style="font-size: 14px; color: #444;">* демо, письмо никуда не уходит, только напоминание</p>
+    </div>
+
+    <!-- Футер -->
+    <div class="footer">
+        ул. Александровская, д. 3 · 1‑к квартира 37,3 м² · 15/23 этаж
+    </div>
+</div>
+
+<!-- Модальное окно для фото -->
+<div class="modal" id="modal" onclick="this.classList.remove('active')">
+    <img id="modalImg" src="">
+</div>
+
+<script>
+    // создаём 12 фото f1...f12
+    const gallery = document.getElementById('gallery');
+    const baseUrl = 'https://raw.githubusercontent.com/sana64/ilinoys/main/f';
+    for (let i = 1; i <= 12; i++) {
+        const img = document.createElement('img');
+        img.src = baseUrl + i + '.webp';
+        img.alt = 'foto' + i;
+        img.onerror = function() { this.src = 'https://via.placeholder.com/130x100?text=фото'; };
+        img.onclick = function() {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = this.src;
+            modal.classList.add('active');
+        };
+        gallery.appendChild(img);
+    }
+
+    // форма — просто напоминание
+    document.getElementById('simpleForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Демо: сообщение ушло бы на sana64@bk.ru (фактически не отправлено)');
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
